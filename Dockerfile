@@ -9,3 +9,4 @@ RUN mkdir -p llvm-project-llvmorg-8.0.1/llvm/build && \
 		cmake --build . -- -j$(nproc) && \
 		cmake --build . -- install && \
 		cd ../../.. && rm -r llvm-project-llvmorg-8.0.1
+RUN apt install -y git
