@@ -10,11 +10,11 @@ RUN mkdir -p llvm-project-llvmorg-8.0.1/llvm/build && \
 		cmake -DLLVM_ENABLE_THREADS=OFF -DLLVM_BUILD_LLVM_DYLIB=ON -DLLVM_TARGETS_TO_BUILD=X86 -DCMAKE_BUILD_TYPE=RelWithDebInfo .. && \
 		cmake --build . -- -j$(nproc) && \
 		cmake --build . -- install && \
-		cd ../../.. && rm -r llvm-project-llvmorg-8.0.1
-
+		cmake --build . -- clean
 FROM base
 RUN mkdir -p llvm-project-llvmorg-8.0.1/llvm/build && \
 		cd llvm-project-llvmorg-8.0.1/llvm/build && \
 		cmake -DLLVM_ENABLE_THREADS=OFF -DLLVM_BUILD_LLVM_DYLIB=ON -DLLVM_TARGETS_TO_BUILD=X86 -DCMAKE_BUILD_TYPE=Debug .. && \
 		cmake --build . -- -j$(nproc) && \
-		cmake --build . -- install
+		cmake --build . -- install && \
+		cmake --build . -- clean
